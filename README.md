@@ -1,2 +1,8 @@
 # recre_mario_bros_flutter
- Recriando tela do jogo super mario bros em Flutter com referencias
+ Recreating Super Mario Bros. with Flutter & Flame | Step-by-Step Tutorial | Part Two 🍄 🎮 🔥
+
+ # Referência video 
+ https://www.youtube.com/watch?v=wbV2KX6iIO8
+ # Canal youtuber 
+ https://www.youtube.com/@TreyHope
+ 
