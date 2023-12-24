@@ -1,0 +1,6 @@
+
+
+class SuperMarioBrosGames extends FlameGame{
+
+
+}
