@@ -16,7 +16,7 @@ class SuperMarioBrosGame extends FlameGame {
       Globals.lv_1_1,
       Vector2.all(Globals.tileSize),
     );
-    world_RF.add(map_RF);
+    add(map_RF);
     // cameraComponent_RF = CameraComponent(world: world_RF)
     //   // RF Criar componente de cameras
     //   /* visor controla qual parte do mundo esta sendo vista através da janela de visualização
