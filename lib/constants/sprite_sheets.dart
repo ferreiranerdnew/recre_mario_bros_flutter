@@ -1,6 +1,6 @@
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
-import 'package:super_mario_bros/constants/globals.dart';
+import 'package:recre_mario_bros_flutter/constants/globals.dart';
 
 class SpriteSheets {
   static late SpriteSheet itemBlocksSpriteSheet;

@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
-import 'package:super_mario_bros/constants/globals.dart';
-import 'package:super_mario_bros/constants/sprite_sheets.dart';
+import 'package:recre_mario_bros_flutter/constants/globals.dart';
+import 'package:recre_mario_bros_flutter/constants/sprite_sheets.dart';
 
 class AnimationConfigs {
   AnimationConfigs._();
