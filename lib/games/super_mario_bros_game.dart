@@ -27,7 +27,7 @@ class SuperMarioBrosGame extends FlameGame {
       // RF Posiciona o mundo no eixo vertical
       ..viewfinder.visibleGameSize = Vector2(450, 0)
       // RF Posiciona  o mundo no eixo vertical
-      ..viewfinder.position = Vector2(120, 0)
+      ..viewfinder.position = Vector2(110, 0)
       ..viewfinder.anchor = Anchor.topLeft
       ..viewport.position = Vector2(500, 0);
 
