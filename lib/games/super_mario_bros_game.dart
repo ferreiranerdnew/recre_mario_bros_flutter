@@ -15,7 +15,17 @@ class SuperMarioBrosGame extends FlameGame {
       Globals.lv_1_1,
       Vector2.all(Globals.tileSize),
     );
-    add(map_1);
+    world.add(map_1);
+    cameraComponent = CameraComponent(world: world)
+    // RF Criar componente de cameras
+    /* visor controla qual parte do mundo esta sendo vista através da janela de visualização 
+    a janela de visualização é essencialmente uma janela a partir da qual o jogo é observado
+    */
+    ..viewfinder.visibleGameSize = Vector2(450, 50)
+
+
+
+
     return super.onLoad();
   }
 }
