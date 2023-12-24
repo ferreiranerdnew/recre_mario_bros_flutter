@@ -6,12 +6,12 @@ import 'package:recre_mario_bros_flutter/constants/globals.dart';
 import 'package:recre_mario_bros_flutter/games/super_mario_bros_game.dart';
 import 'package:recre_mario_bros_flutter/levels/level_option.dart';
 
-class LeveComponent extends Component with HasGameRef<SuperMarioBrosGame> {
+class LevelComponent extends Component with HasGameRef<SuperMarioBrosGame> {
   final LevelOption option;
 
   late Rectangle _levelBounds_RF;
 
-  LeveComponent(this.option) : super();
+  LevelComponent(this.option) : super();
 
   @override
   Future<void> onLoad() async {
