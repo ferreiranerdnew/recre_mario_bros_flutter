@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flame/experimental.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flame/components.dart';
+import 'package:recre_mario_bros_flutter/actors/mario.dart';
 import 'package:recre_mario_bros_flutter/constants/globals.dart';
 import 'package:recre_mario_bros_flutter/games/super_mario_bros_game.dart';
 import 'package:recre_mario_bros_flutter/levels/level_option.dart';
@@ -11,6 +12,8 @@ class LevelComponent extends Component with HasGameRef<SuperMarioBrosGame> {
   final LevelOption option;
 
   late Rectangle _levelBounds_RF;
+  // RF Criando os atores
+  late Mario _mario;
 
   LevelComponent(this.option) : super();
 
@@ -34,8 +37,36 @@ class LevelComponent extends Component with HasGameRef<SuperMarioBrosGame> {
     createPlatforms(level_RF.tileMap);
     return super.onLoad();
   }
+
+  //RF Criando os atores
+  void createActores(RenderableTiledMap tileMap) {
+    // RF Referenciando o Layers criado dentro do tiled
+    ObjectGroup? actorsLayer = tileMap.getLayer<ObjectGroup>('Actors');
+
+    if (actorsLayer == null) {
+      throw Exception(
+          'inglês: Actors Layer could not be found; português: A camada de atores não foi encontrada');
+    }
+
+    for (final TiledObject obj in actorsLayer.objects) {
+      switch (obj.name) {
+        case 'Mario':
+          _mario = Mario(
+            position: Vector2(obj.x, obj.y),
+            levelBounds: _levelBounds_RF,
+          );
+          gameRef.world_RF.add(_mario);
+
+          break;
+        default:
+          break;
+      }
+    }
+  }
+
   //RF referenciando o objetc criado dentro do tile com noem de Platforms apos toda a configuração deve ficar com um controno rosa
   void createPlatforms(RenderableTiledMap tileMap) {
+    // RF Referenciando o Layers criado dentro do tiled
     ObjectGroup? platformsLayer = tileMap.getLayer<ObjectGroup>('Platforms');
 
     if (platformsLayer == null) {
