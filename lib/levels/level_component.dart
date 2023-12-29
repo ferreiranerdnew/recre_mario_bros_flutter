@@ -34,7 +34,7 @@ class LevelComponent extends Component with HasGameRef<SuperMarioBrosGame> {
     createPlatforms(level_RF.tileMap);
     return super.onLoad();
   }
-
+  //RF referenciando o objetc criado dentro do tile com noem de Platforms apos toda a configuração deve ficar com um controno rosa
   void createPlatforms(RenderableTiledMap tileMap) {
     ObjectGroup? platformsLayer = tileMap.getLayer<ObjectGroup>('Platforms');
 
