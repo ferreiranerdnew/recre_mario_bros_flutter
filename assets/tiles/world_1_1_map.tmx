@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="211" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="37">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="211" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="4" nextobjectid="39">
  <tileset firstgid="1" source="world_1_1_tileset.tsx"/>
  <layer id="1" name="Tile Layer 1" width="211" height="15">
   <data encoding="base64">
@@ -41,5 +41,8 @@
   <object id="34" x="240" y="208.75" width="289.5" height="31"/>
   <object id="35" x="529.25" y="208.25" width="296.75" height="31.5"/>
   <object id="36" x="825.75" y="208.25" width="278.5" height="31.75"/>
+ </objectgroup>
+ <objectgroup id="3" name="Actors">
+  <object id="38" name="Mario" x="64" y="144" width="16" height="16"/>
  </objectgroup>
 </map>
