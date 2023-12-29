@@ -33,13 +33,15 @@ class LevelComponent extends Component with HasGameRef<SuperMarioBrosGame> {
               level_RF.tileMap.map.height.toDouble()) *
           Globals.tileSize,
     );
-    // iniciando chamada da função createPlatforms
+    //BUG Iniciando a chamada ad afunçãod e criação do Actors
+    createActors(level_RF.tileMap);
+    // BUG iniciando chamada da função createPlatforms
     createPlatforms(level_RF.tileMap);
     return super.onLoad();
   }
 
   //RF Criando os atores
-  void createActores(RenderableTiledMap tileMap) {
+  void createActors(RenderableTiledMap tileMap) {
     // RF Referenciando o Layers criado dentro do tiled
     ObjectGroup? actorsLayer = tileMap.getLayer<ObjectGroup>('Actors');
 
