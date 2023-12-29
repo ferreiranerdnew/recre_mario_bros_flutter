@@ -4,7 +4,7 @@ import 'package:flame/game.dart';
 import 'package:recre_mario_bros_flutter/levels/level_component.dart';
 import 'package:recre_mario_bros_flutter/levels/level_option.dart';
 
-class SuperMarioBrosGame extends FlameGame {
+class SuperMarioBrosGame extends FlameGame with HasCollisionDetection{
   // RF Criando as variaveis todos os componetes destas variaveis abaixo estão no (package:flame/camera.dart)
   late CameraComponent cameraComponent_RF;
   final World world_RF = World();
