@@ -22,23 +22,20 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
   //RF Gravidade, criando uma variavel para a gravidade
   /**
    * No Eixo y a cada ponto que s ecai e adicionado um valor
-   * Inicio variaveis sorbe gravidade
+   * 
    */
   final double _gravity = 15;
   final Vector2 velocity = Vector2.zero();
-  late Vector2 _minClamp;
-  late Vector2 _maxClamp;
-  // fim variaveis sorbe gravidade
-  double _jumpSpeed = 400;
-  // determinando a velocidade que o mario deve andar na tela
-  //variaveis referente a velocidade e o eixo que vamos deixar o mario virado
+
   static const double _minMoveSpeed = 150;
   static const double _maxMoveSpeed = _minMoveSpeed + 100;
-  double _currentSpeed = _minMoveSpeed;  
+  double _currentSpeed = _minMoveSpeed;
   bool isFacingRight = true;
   int _hAxisInput = 0;
+  late Vector2 _minClamp;
+  late Vector2 _maxClamp;
 
-
+  double _jumpSpeed = 400;
 
   Mario({required Vector2 position, required Rectangle levelBounds})
       : super(
@@ -66,50 +63,51 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
     // BUG iniciar as duas funçõe sabaixo de gravidade
     velocityUpdate();
     positionUpdate(dt);
+    speedUpdate();
+    facingDirectionUpdate();
   }
 
-  //BUG evento relaciodado a teclas 
+  //BUG evento relaciodado a teclas
   @override
-  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed){
-
+  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _hAxisInput = 0;
     //se movendo com a tecla para esquerda
-    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowLeft)? -1 : 0;
-    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowRight)? 1 : 0;
-    
+    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowLeft) ? -1 : 0;
+    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowRight) ? 1 : 0;
+
     return super.onKeyEvent(event, keysPressed);
   }
+
   //Função referente a movimentação do heroi em tela D2
-  void speedUpdate(){
-    if(_hAxisInput== 0){
+  void speedUpdate() {
+    if (_hAxisInput == 0) {
       _currentSpeed = _minMoveSpeed;
-    }else{
-      if(_currentSpeed < _maxMoveSpeed){
+    } else {
+      if (_currentSpeed <= _maxMoveSpeed) {
         _currentSpeed++;
       }
     }
   }
+
   //Função referente a movimentação do heroi em tela D2
-  void facingDirectionUpdate(){
+  void facingDirectionUpdate() {
     // verificar se o heixo H é maior que zero
-    if(_hAxisInput > 0){
+    if (_hAxisInput > 0) {
       isFacingRight = true;
-    }else{
+    } else {
       isFacingRight = false;
     }
     //invertendo o heroi
-    if((_hAxisInput > 0 && scale.x < 0) || (_hAxisInput < 0 && scale.x > 0)){
+    if ((_hAxisInput < 0 && scale.x > 0) || (_hAxisInput > 0 && scale.x < 0)) {
       flipHorizontallyAroundCenter();
     }
   }
-
 
   void velocityUpdate() {
     velocity.y += _gravity;
     velocity.y = velocity.y.clamp(-_jumpSpeed, 150);
 
     velocity.x = _hAxisInput * _currentSpeed;
-
   }
 
   void positionUpdate(double dt) {
@@ -150,10 +148,10 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
   void platformPositionCheck_RF(Set<Vector2> intersectionPoints) {
     final Vector2 mid =
         (intersectionPoints.elementAt(0) + intersectionPoints.elementAt(1)) / 2;
-        final Vector2 collisionNormal = absoluteCenter - mid;
-        double penetrationLength = (size.x / 2) - collisionNormal.length;
-        collisionNormal.normalize();
+    final Vector2 collisionNormal = absoluteCenter - mid;
+    double penetrationLength = (size.x / 2) - collisionNormal.length;
+    collisionNormal.normalize();
 
-        position += collisionNormal.scaled(penetrationLength);
+    position += collisionNormal.scaled(penetrationLength);
   }
 }
