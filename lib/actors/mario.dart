@@ -75,12 +75,24 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
     _hAxisInput = 0;
     //se movendo com a tecla para esquerda
     _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowLeft)? -1 : 0;
-    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowLeft)? -1 : 0;
+    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowRight)? 1 : 0;
     
     return super.onKeyEvent(event, keysPressed);
-
+  }
+  //Função referente a movimentação do heroi em tela D2
+  void speedUpdate(){
+    if(_hAxisInput== 0){
+      _currentSpeed = _minMoveSpeed;
+    }else{
+      if(_currentSpeed < _maxMoveSpeed){
+        _currentSpeed++;
+      }
+    }
   }
 
+  void facingDirectionUpdate(){
+
+  }
 
 
   void velocityUpdate() {
