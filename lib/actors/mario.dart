@@ -32,7 +32,7 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
   double _jumpSpeed = 400;
   // determinando a velocidade que o mario deve andar na tela
   //variaveis referente a velocidade e o eixo que vamos deixar o mario virado
-  static const double _minMoveSpeed = 125;
+  static const double _minMoveSpeed = 150;
   static const double _maxMoveSpeed = _minMoveSpeed + 100;
   double _currentSpeed = _minMoveSpeed;  
   bool isFacingRight = true;
