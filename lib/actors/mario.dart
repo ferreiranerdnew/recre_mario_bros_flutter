@@ -6,6 +6,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
 import 'package:recre_mario_bros_flutter/constants/animation_configs.dart';
 import 'package:recre_mario_bros_flutter/constants/globals.dart';
 import 'package:recre_mario_bros_flutter/objects/platform.dart';
@@ -17,8 +18,8 @@ enum MarioAnimationsState_RF {
 }
 
 class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
-    with CollisionCallbacks {
-  //RF Gravidade, criando uam variavel para a gravidade
+    with CollisionCallbacks, KeyboardHandler {
+  //RF Gravidade, criando uma variavel para a gravidade
   /**
    * No Eixo y a cada ponto que s ecai e adicionado um valor
    * Inicio variaveis sorbe gravidade
@@ -29,6 +30,15 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
   late Vector2 _maxClamp;
   // fim variaveis sorbe gravidade
   double _jumpSpeed = 400;
+  // determinando a velocidade que o mario deve andar na tela
+  //variaveis referente a velocidade e o eixo que vamos deixar o mario virado
+  static const double _minMoveSpeed = 125;
+  static const double _maxMoveSpeed = _minMoveSpeed + 100;
+  double _currentSpeed = _minMoveSpeed;  
+  bool isFacingRight = true;
+  int _hAxisInput = 0;
+
+
 
   Mario({required Vector2 position, required Rectangle levelBounds})
       : super(
@@ -57,6 +67,21 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
     velocityUpdate();
     positionUpdate(dt);
   }
+
+  //BUG evento relaciodado a teclas 
+  @override
+  bool onKeyEvent(RawKeyEvent event, Set<LogicalKeyboardKey> keysPressed){
+
+    _hAxisInput = 0;
+    //se movendo com a tecla para esquerda
+    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowLeft)? -1 : 0;
+    _hAxisInput += keysPressed.contains(LogicalKeyboardKey.arrowLeft)? -1 : 0;
+    
+    return super.onKeyEvent(event, keysPressed);
+
+  }
+
+
 
   void velocityUpdate() {
     velocity.y += _gravity;
