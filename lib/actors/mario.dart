@@ -89,15 +89,26 @@ class Mario extends SpriteAnimationGroupComponent<MarioAnimationsState_RF>
       }
     }
   }
-
+  //Função referente a movimentação do heroi em tela D2
   void facingDirectionUpdate(){
-
+    // verificar se o heixo H é maior que zero
+    if(_hAxisInput > 0){
+      isFacingRight = true;
+    }else{
+      isFacingRight = false;
+    }
+    //invertendo o heroi
+    if((_hAxisInput > 0 && scale.x < 0) || (_hAxisInput < 0 && scale.x > 0)){
+      flipHorizontallyAroundCenter();
+    }
   }
 
 
   void velocityUpdate() {
     velocity.y += _gravity;
     velocity.y = velocity.y.clamp(-_jumpSpeed, 150);
+
+    velocity.x = _hAxisInput * _currentSpeed;
 
   }
 
